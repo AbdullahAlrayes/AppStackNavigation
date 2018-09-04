@@ -1,0 +1,144 @@
+1.  Install `react-navigation`
+
+        yarn add react-navigation
+
+2.  Create `LoginScreen.js`
+
+        import React, { Component } from "react";
+        import { View, Button } from "react-native";
+
+        class LoginScreen extends Component {
+        render() {
+            return (
+            <View>
+                <Button
+                title="LOGIN"
+                onPress={() => this.props.navigation.navigate("Home")}
+                />
+            </View>
+            );
+        }
+        }
+
+        export default LoginScreen;
+
+3.  Create `HomeScreen.js`
+
+        import React, { Component } from "react";
+        import { View, Button } from "react-native";
+
+        class HomeScreen extends Component {
+        render() {
+            return (
+            <View>
+                <Button
+                title="Back to Login Page"
+                onPress={() => this.props.navigation.navigate("Login")}
+                />
+            </View>
+            );
+        }
+        }
+
+        export default HomeScreen;
+
+4)  Import `createStackNavigator`
+
+        import { createStackNavigator } from "react-navigation";
+
+5.  Create constant called `AppStackNavigator` as following. `Login` & `Home` are just names for component for `LoginScreen.js` and `HomeScreen.js`. These names are used inside the component for `onPress` function.
+
+        const AppStackNavigation = createStackNavigator({
+        Login: LoginScreen,
+        Home: HomeScreen
+        });
+
+6.  Add `AppStackNavigator` inside the render of `App.js` as following
+
+        export default class App extends React.Component {
+        render() {
+            return <AppStackNavigation />;
+        }
+        }
+
+7.  Following are the final code for `App.js`
+
+        import React from "react";
+        import { StyleSheet, Text, View } from "react-native";
+        import { createStackNavigator } from "react-navigation";
+
+        import LoginScreen from "./Component/Login";
+        import HomeScreen from "./Component/Home";
+
+        export default class App extends React.Component {
+        render() {
+            return <AppStackNavigation />;
+        }
+        }
+
+        const AppStackNavigation = createStackNavigator({
+        Login: LoginScreen,
+        Home: HomeScreen
+        });
+
+        const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            backgroundColor: "#fff",
+            alignItems: "center",
+            justifyContent: "center"
+        }
+        });
+
+8.  Following are the final coder of `Login.js`
+
+        import React, { Component } from "react";
+        import { View, Button } from "react-native";
+
+        class LoginScreen extends Component {
+        render() {
+            return (
+            <View>
+                <Button
+                title="LOGIN"
+                onPress={() => this.props.navigation.navigate("Home")}
+                />
+            </View>
+            );
+        }
+        }
+
+        export default LoginScreen;
+
+9.  Following are the final coder of `Login.js`
+
+        import React, { Component } from "react";
+        import { View, Button } from "react-native";
+
+        class HomeScreen extends Component {
+        render() {
+            return (
+            <View>
+                <Button
+                title="Back to Login Page"
+                onPress={() => this.props.navigation.navigate("Login")}
+                />
+            </View>
+            );
+        }
+        }
+
+        export default HomeScreen;
+
+10. Following are some options you can use to move between screens:
+
+        <Button onPress={() => this.props.navigation.navigate("Login")}/>
+        <Button onPress={() => this.props.navigation.push("Login")}/>
+        <Button onPress={() => this.props.navigation.goBack()}/>
+        <Button onPress={() => this.props.navigation.popToTop()}/>
+
+11. If you want to remove the header of navigation, use the following code before `render()`
+
+        static navigationOptions = {
+            header: null
+        };
